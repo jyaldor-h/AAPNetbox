@@ -1,0 +1,30 @@
+env:
+  NETBOX_API: '{{ NETBOX_API }}'
+  NETBOX_TOKEN: '{{ NETBOX_TOKEN }}'
+
+
+
+plugin: netbox.netbox.nb_inventory
+
+validate_certs: True
+
+config_context: True
+
+group_by:
+  - tenants
+  - device_roles
+  - platforms
+  - sites
+
+vm_query_filters:
+  - q: "__exclude_all_virtual_machines__"
+
+# Filter out not connected items such as racks
+device_query_filters:
+  - has_primary_ip: 'true'
+
+query_filters:
+ - status: active
+
+compose:
+  ansible_host: primary_ip4.address 
