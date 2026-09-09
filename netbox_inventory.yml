@@ -15,6 +15,7 @@ group_by:
   - device_roles
   - platforms
   - sites
+  - manufacturers
 
 vm_query_filters:
   - q: "__exclude_all_virtual_machines__"
