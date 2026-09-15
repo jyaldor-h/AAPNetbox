@@ -16,6 +16,7 @@ group_by:
   - platforms
   - sites
   - manufacturers
+  - tags
 
 vm_query_filters:
   - q: "__exclude_all_virtual_machines__"
@@ -29,3 +30,9 @@ query_filters:
 
 compose:
   ansible_host: primary_ip4.address | default(primary_ip.address) | ansible.utils.ipaddr('address')
+
+rename_variables:
+- pattern: '^serial$'
+  repl: netbox_serial
+- pattern: '^tags$'
+  repl: netbox_tags
